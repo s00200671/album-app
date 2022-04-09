@@ -68,7 +68,7 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false ? true : false;
+    return user !== null;
   }
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
@@ -76,7 +76,7 @@ export class AuthService {
       .signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['']);
         });
         this.SetUserData(result.user);
       })
@@ -93,8 +93,7 @@ export class AuthService {
     );
     const userData: User = {
       uid: user.uid,
-      email: user.email,
-      username: user.displayName
+      email: user.email
     };
     return userRef.set(userData, {
       merge: true,

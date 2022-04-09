@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchComponent } from '../search/search.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,13 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    public dialog: MatDialog 
+    public dialog: MatDialog,
+    public afAuth: AngularFireAuth, // Inject Firebase auth service
   ) { }
 
   ngOnInit(): void {
     // Get if the user is logged in by checking if the user obj has keys
-    this.loggedIn = this.authService.isLoggedIn.valueOf();
+    this.afAuth.authState.subscribe(user => user ? (this.loggedIn = true) : (this.loggedIn = false));
   };
 
   ShowSearch() {

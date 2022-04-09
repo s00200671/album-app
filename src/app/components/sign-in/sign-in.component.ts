@@ -19,6 +19,7 @@ export class SignInComponent implements OnInit {
     ) {  }
 
   ngOnInit() {
+    this.authService.isLoggedIn && this.router.navigate(['']);
     this.loginForm = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
       password: new FormControl("", [Validators.required, Validators.minLength(1), Validators.maxLength(50)])

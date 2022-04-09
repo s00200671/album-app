@@ -23,6 +23,7 @@ export class SignUpComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn && this.router.navigate(['']);
     // New formgroup modelling the recipe interface
   }
 

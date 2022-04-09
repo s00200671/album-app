@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from "@angular/material/tree";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     MatTreeModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {}

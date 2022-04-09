@@ -1,12 +1,12 @@
 <nav class="navbar navbar-light bg-light" color="primary">
-    <span [routerLink]="''" class="title navbar-brand">SongApp</span>
-    <button [routerLink]="'search'" mat-button class="search-btn">Browse</button>
-    <button (click)="ShowSearch()" mat-icon-button class="search-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>search</mat-icon>
-    </button>
-    <span class="spacer"></span>
-    <button [routerLink]="'favourites'" mat-button class="user-btn">Favourites</button>
-    <button *ngIf="!loggedIn" [routerLink]="'login'" mat-button class="user-btn">Log in</button>
-    <button *ngIf="!loggedIn" [routerLink]="'register'" mat-button class="user-btn">Register</button>
-    <button *ngIf="loggedIn" (click)="LogOut()" mat-button class="user-btn">Log out</button>
-  </nav>
+  <span [routerLink]="''" class="title navbar-brand">SongApp</span>
+  <button [routerLink]="'search'" mat-button class="search-btn">Browse</button>
+  <button (click)="ShowSearch()" mat-icon-button class="search-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>search</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <button [routerLink]="'favourites'" mat-button class="user-btn">Favourites</button>
+  <button *ngIf="!loggedIn" [routerLink]="'sign-in'" mat-button class="user-btn">Log in</button>
+  <button *ngIf="!loggedIn" [routerLink]="'register-user'" mat-button class="user-btn">Register</button>
+  <button *ngIf="loggedIn" (click)="LogOut()" mat-button class="user-btn">Log out</button>
+</nav>
