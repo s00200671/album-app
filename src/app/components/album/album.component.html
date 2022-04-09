@@ -1,0 +1,16 @@
+<mat-card class="album-card">
+    <mat-card-title-group>
+        <mat-card-title>{{album.title}}</mat-card-title>
+        <mat-card-subtitle>{{album.artists}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+        <ul class="songs-list">
+            <li *ngFor="let song of album.songs">{{song.title}} - {{song.length}}</li>
+        </ul>
+    </mat-card-content> 
+      <!-- <mat-card-actions>
+        <button class="album-btn" (click)="show = !show" mat-raised-button color="primary">{{ show ? 'Show More': 'Show Less' }}</button>
+        <button class="album-btn" [hidden]="favourited" (click)="AddToFavourites()" mat-raised-button color="primary">Add to favourites</button>
+        <button class="album-btn" [hidden]="!favourited" (click)="RemoveFavourite()" mat-raised-button color="primary">Remove from favourites</button>
+      </mat-card-actions> -->
+</mat-card>

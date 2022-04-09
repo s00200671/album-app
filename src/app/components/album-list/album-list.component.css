@@ -1,0 +1,28 @@
+.album-list-container {
+    max-width: 80%;
+    margin: auto;
+}
+
+.form-container {
+    width: 100%;
+    margin: auto;
+}
+
+.form-btns {
+    width: 100%;
+    text-align: center !important;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+.form-btns button {
+    margin-right: 0.3em;
+    margin-left: 0.3em;
+}
+
+.selected {
+    background-color: whitesmoke;
+}
