@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // Get if the user is logged in by checking if the user obj has keys
-    this.authService.user.subscribe(u => this.loggedIn = this.authService.IsLoggedIn());
+    this.loggedIn = this.authService.isLoggedIn.valueOf();
   };
 
   ShowSearch() {
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   
   LogOut(): void {
     // When the log out button is pressed, log out is called from user service, then navigate to home
-    this.authService.Logout();
+    this.authService.SignOut();
     this.loggedIn = false;
     this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
     });

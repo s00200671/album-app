@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="loginForm">
+ 
+    <mat-error *ngIf="message">{{message}}</mat-error>
+
+    <mat-form-field class="form-field" s appearance="fill">
+        <mat-label for="email" class="form-label">Email</mat-label>
+        <input id="email" type="email" formControlName="email" matInput>
+        <mat-error *ngIf="loginForm.get('email')?.invalid">Email or password entered is incorrect, or does not exist</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill">
+        <mat-label for="password" class="form-label">Password</mat-label>
+        <input id="password" type="password" formControlName="password" matInput>
+        <mat-error *ngIf="loginForm.get('password')?.invalid">Email or password entered is incorrect, or does not exist</mat-error>
+    </mat-form-field>
+
+    <button class="form-btn" type="submit" [disabled]="!loginForm?.valid" mat-raised-button
+        color="primary">Submit</button>
+
+</form>

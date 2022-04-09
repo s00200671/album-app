@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlbumListComponent } from './components/album-list/album-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
-  // {path: "", component: HomeComponent},
-  {path: "albums", component: AlbumListComponent}
-  // {path:"register", component: RegisterFormComponent},
-  // {path:"login", component: LoginFormComponent},
+  {path: "", component: HomeComponent},
+  {path: "albums", component: AlbumListComponent},
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'register-user', component: SignUpComponent },
   // {path:"profile", component: ProfileComponent, canActivate: [AuthGuard]},
   // {path:"favourites", component: FavouritesListComponent, canActivate: [AuthGuard]}
 ];

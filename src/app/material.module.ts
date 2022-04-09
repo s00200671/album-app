@@ -6,6 +6,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTreeModule } from "@angular/material/tree";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { MatTreeModule } from "@angular/material/tree";
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MaterialModule {}

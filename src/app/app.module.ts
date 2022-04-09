@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +16,10 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { environment } from 'src/environments/environment';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +30,21 @@ import { SearchComponent } from './components/search/search.component';
     CommentComponent,
     CommentListComponent,
     HeaderComponent,
-    SearchComponent
+    SearchComponent,
+    SignInComponent,
+    SignUpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

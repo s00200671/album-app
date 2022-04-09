@@ -90,7 +90,7 @@ export class AlbumListComponent implements OnInit {
           this.albums = [] as Album[];
 
           // get the .albums of the response
-          let albums = resp["albums"];
+          let albums = resp['albums'];
           albums.forEach((album: Album) => this.albums.push(album as Album));
 
           console.log(resp);

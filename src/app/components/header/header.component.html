@@ -8,7 +8,5 @@
     <button [routerLink]="'favourites'" mat-button class="user-btn">Favourites</button>
     <button *ngIf="!loggedIn" [routerLink]="'login'" mat-button class="user-btn">Log in</button>
     <button *ngIf="!loggedIn" [routerLink]="'register'" mat-button class="user-btn">Register</button>
-    <button *ngIf="loggedIn" [routerLink]="'profile'" mat-button class="user-btn">Profile</button>
     <button *ngIf="loggedIn" (click)="LogOut()" mat-button class="user-btn">Log out</button>
-
   </nav>

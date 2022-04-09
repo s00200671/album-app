@@ -11,7 +11,7 @@ import { AlbumAPIService } from 'src/app/services/album-api.service';
 export class CommentListComponent implements OnInit {
 
   comments: Comment[] = [];
-  albumID: string;
+  albumID: string = "";
 
   nestedDataSource = new MatTreeNestedDataSource<Comment>();
 

@@ -1,0 +1,11 @@
+.registerForm {
+    width: 60%;
+    margin: auto;
+    margin-top: 1.8em;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerForm mat-field {
+    margin-top: 0.3em;
+}
