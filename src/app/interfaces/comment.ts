@@ -1,8 +1,8 @@
 export interface Comment {
-    _id: string,
+    id: string,
     commentText: string,
     postedBy: string,
     time: Date,
-    parentComment?: Comment,
-    childComments?: Comment[]
+    parentComment: string,
+    childComments: [Comment]
 }

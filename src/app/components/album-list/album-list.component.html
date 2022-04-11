@@ -1,5 +1,5 @@
 <p>album-list works!</p>
 <div class="container album-list-container">
-    <app-album *ngFor="let a of albums" [album]="a"></app-album>
+    <app-album *ngFor="let a of albums" [album]="a" (click)="clicked(a)"></app-album>
 
   </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from 'src/app/interfaces/album';
 import { AlbumAPIService } from 'src/app/services/album-api.service';
 import { Location } from '@angular/common';
-
 
 @Component({
   selector: 'app-album-list',
@@ -33,7 +32,8 @@ export class AlbumListComponent implements OnInit {
   constructor(
     private albumAPIService: AlbumAPIService,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit(): void {
     // set the current album to undefined again, to make sure it doesn't carry over
@@ -106,4 +106,7 @@ export class AlbumListComponent implements OnInit {
       });
   }
 
+  clicked(album : Album) {
+    this.router.navigate([`/albums/${album.id}`]);
+  }
 }
