@@ -1,9 +1,12 @@
 import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumAPIService } from 'src/app/services/album-api.service';
 import { Comment } from "../../interfaces/comment";
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-comment-list',
@@ -12,20 +15,28 @@ import { Comment } from "../../interfaces/comment";
 })
 export class CommentListComponent implements OnInit {
 
+
+  uid: string = "";
   comments: {};
   @Input() albumID: string = "";
-  StructuredComments = {};
+  StructuredComments = [];
 
   nestedDataSource = new MatTreeNestedDataSource<Comment>();
+
+  nestedTreeControl = new NestedTreeControl<Comment>(node => node.childComments);
 
   //nestedTreeControl = new NestedTreeControl<Comment>(node => node.childComments);
 
   constructor(
-    private albumAPIService: AlbumAPIService
+    private albumAPIService: AlbumAPIService,
+    public dialog: MatDialog,
+    private router: Router,
+    public afAuth: AngularFireAuth, // Inject Firebase auth service
   ) { }
 
   ngOnInit(): void {
     this.GetComments(this.albumID);
+    this.afAuth.authState.subscribe(user => { console.log(user); this.uid = user.uid; console.log(this.uid) });
   }
 
   GetComments(id: string) {
@@ -33,10 +44,6 @@ export class CommentListComponent implements OnInit {
       .subscribe({
 
         next: (resp) => {
-          // init albums as new album array
-          // this.comments = [];
-
-          // get the .albums of the response
           this.comments = resp;
 
           console.log(resp);
@@ -51,7 +58,7 @@ export class CommentListComponent implements OnInit {
   structureComments() {
     let unstructuredComments = this.comments;
     console.log(unstructuredComments, this.comments);
-    let structuredComments = {};
+    let structuredComments = [];
 
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
@@ -68,35 +75,34 @@ export class CommentListComponent implements OnInit {
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
       let obj = unstructuredComments[id];
-      obj.parentComment && delete unstructuredComments[id];
-    }
+      obj.parentComment ? delete unstructuredComments[id] : structuredComments.push({id: id, ...obj});
 
-    // for (let id in unstructuredComments) {
-    //   if (!unstructuredComments.hasOwnProperty(id)) continue;
-    //   let obj = unstructuredComments[id];
-    //   if (!obj.parentComment) {
-    //     structuredComments[id] = {...obj};
-    //     delete unstructuredComments[id];
-    //   }
-    // };
-    // for (let id in unstructuredComments) {
-    //   if (!unstructuredComments.hasOwnProperty(id)) continue;
-    //   let obj = unstructuredComments[id];
-    //   if (obj.parentComment) {
-    //     structuredComments[obj.parentComment].childComments = [];
-    //     structuredComments[obj.parentComment].childComments.push(obj);
-    //     for (let id in unstructuredComments) {
-    //       if (!unstructuredComments.hasOwnProperty(id) || obj.id == id) continue;
-    //       let obj2 = unstructuredComments[obj.id];
-    //       if (obj2.parentComment == obj.id) {
-    //         structuredComments[obj2.parentComment].childComments = [];
-    //         structuredComments[obj2.parentComment].childComments.push(obj);
-    //       }
-    //     }
-    //   }
-    // }
+    } 
 
-    this.comments = structuredComments;
-    console.log(unstructuredComments);
+    this.nestedDataSource.data = structuredComments;
+    console.log(unstructuredComments, structuredComments);
+    console.log(structuredComments,this.nestedDataSource.data);
+  }
+
+  hasNestedChild(index: number, node: Comment) {
+    return node?.childComments?.length > 0;
+  }
+
+  addNewComment(comment: Comment) {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      width: "auto",
+      data: {
+        comment: comment,
+        album: this.albumID
+      }
+    });
+  }
+
+  RemoveComment(comment: Comment) {
+    if(this.uid == comment.postedBy)
+    this.albumAPIService.RemoveComment(this.albumID, comment?.id)
+    .subscribe( val => {
+      val ? this.router.navigate([this.router.url, { skipLocationChange: true }]) : console.log("error");
+    });
   }
 }

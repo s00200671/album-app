@@ -4,5 +4,8 @@
     <!-- <h3>{{album.rating}}</h3>
 <h3>{{album.favourites}}</h3> -->
     <p>{{album.description}}</p>
+<button mat-raised-button *ngIf="user" (click)="Favourite()">
+    {{ !favourite ? "Add to favourites" : "Remove from Favourites" }}
+</button>
 <app-comment-list [albumID]="album.id"></app-comment-list>
 </div>

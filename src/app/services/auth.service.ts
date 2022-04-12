@@ -8,7 +8,8 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
+import { Router, UrlSerializer } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,7 @@ export class AuthService {
           this.router.navigate(['']);
         });
         this.SetUserData(result.user);
+        console.log(result.user);
       })
       .catch((error) => {
         return error.message;
@@ -88,17 +90,32 @@ export class AuthService {
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
       `users/${user.uid}`
     );
     const userData: User = {
       uid: user.uid,
-      email: user.email
+      email: user.email,
+      favourites: user.favourites
     };
     return userRef.set(userData, {
       merge: true,
     });
   }
+
+  SetFavs(user: any) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+      `users/${this.userData.uid}`
+    );
+    const userData: any = {
+      favourites: user.favourites
+    };
+    return userRef.set(userData, {
+      merge: true,
+    });
+  }
+
+
   // Sign out
   SignOut() {
     return this.afAuth.signOut().then(() => {
@@ -106,6 +123,21 @@ export class AuthService {
       this.router.navigate(['sign-in']);
     });
   }
+
+  AddFavourite(id: string) {
+    let user = this.userData.favourites || [];
+    user.push(id);
+    console.log(user);
+    this.SetFavs({favourites: user});
+  }
+  
+  RemoveFavourite(id: string) {
+    let user = this.userData.favourites || [];
+    user.length > 0 && user.splice([user.favourites.indexOf(id)], 1);
+    console.log(user);
+    this.SetFavs({favourites: user});
+  }
+
 
   // // Get the user value from the behaviour subject
   // public get userValue(): User | null {

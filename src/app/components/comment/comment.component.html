@@ -1,3 +1,8 @@
-<h1>{{comment.postedBy}}</h1>
-<h2>{{comment.time}}</h2>
-<p>{{comment.commentText}}</p>
+<div class="replyComment">
+    <h1>{{message}}</h1>
+    <mat-form-field appearance="fill">
+        <mat-label>New Comment</mat-label>
+        <input matInput #textValue placeholder="">
+    </mat-form-field>
+    <button mat-button (click)="saveComment(textValue.value)">Save</button>
+</div>

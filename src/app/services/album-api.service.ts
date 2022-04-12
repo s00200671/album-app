@@ -43,32 +43,13 @@ export class AlbumAPIService {
     return this.http.get<Comment>(`${this.COMMENT_API}/${id}`);
   }
 
-  // addAlbum(Album: Album): Observable<Album> {
-  //   // Add a Album to the db
-  //   return this.http.post<Album>(this.ALBUM_API, Album)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  // }
+  AddComment(id: string, comment: any): Observable<boolean> {
+    return this.http.post<boolean>(`${this.COMMENT_API}/${id}`, comment);
+  }
 
-  // updateAlbum(id: string, Album: Album): Observable<Album> {
-  //   // Update a Album using the id and the new Album info
-  //   console.log('subscribing to update' + id);
-  //   let AlbumURI: string = `${this.ALBUM_API}/${id}`;
-  //   return this.http.put<Album>(AlbumURI, Album)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  // }
-
-  // /** DELETE: delete the Album from the server */
-  // deleteAlbum(id: string): Observable<unknown> {
-  //   const url = `${this.ALBUM_API}/${id}`; // DELETE 
-  //   return this.http.delete(url)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  // }
+  RemoveComment(id: string, commentid: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.COMMENT_API}/${id}/${commentid}`)
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
