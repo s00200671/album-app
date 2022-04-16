@@ -30,6 +30,7 @@ export class SignUpComponent implements OnInit {
   onSubmit() {
     // Attempts to create a user and then navigate to login
     this.authService.SignUp(this.registerForm.get('email')?.value, this.registerForm.get('password')?.value)
+    .then(val => val && (this.message = "Error signing up"))
   }
 
   dismissAlert() {

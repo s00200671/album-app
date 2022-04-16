@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     // When the log out button is pressed, log out is called from user service, then navigate to home
     this.authService.SignOut();
     this.loggedIn = false;
-    this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+    this.router.navigateByUrl('sign-in', { skipLocationChange: false }).then(() => {
     });
   }
 }

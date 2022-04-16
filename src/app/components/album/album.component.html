@@ -1,12 +1,16 @@
 <mat-card class="album-card">
     <mat-card-title-group>
-        <mat-card-title>{{album.title}}</mat-card-title>
+        <mat-card-title class="album-title" (click)="clicked()">{{album.title}}</mat-card-title>
         <mat-card-subtitle>{{album.artists}}</mat-card-subtitle>
     </mat-card-title-group>
-    <mat-card-content>
-        <ul class="songs-list">
-            <li *ngFor="let song of album.songs">{{song.title}} - {{song.length}}</li>
-        </ul>
+    <mat-card-actions>
+    <button class="album-btn" (click)="show = !show" mat-raised-button color="primary">{{ show ? 'Show songs': 'Hide songs' }}</button>
+    </mat-card-actions>
+    <mat-card-content class="container" [hidden]="show">
+        <div>
+        <ol class="songs-list">
+            <li *ngFor="let song of album.songs">{{song.title}} - {{song.length | songtime}}</li>
+        </ol></div>
     </mat-card-content> 
       <!-- <mat-card-actions>
         <button class="album-btn" (click)="show = !show" mat-raised-button color="primary">{{ show ? 'Show More': 'Show Less' }}</button>

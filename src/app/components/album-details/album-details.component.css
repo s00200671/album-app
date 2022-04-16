@@ -1,0 +1,13 @@
+.details-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 1.5em;
+}
+
+.comment-list {
+    margin-top: 1em;
+}
+
+.songs-list {
+    margin-bottom: 2em;
+}

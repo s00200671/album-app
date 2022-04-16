@@ -106,7 +106,4 @@ export class AlbumListComponent implements OnInit {
       });
   }
 
-  clicked(album : Album) {
-    this.router.navigate([`/albums/${album.id}`]);
-  }
 }

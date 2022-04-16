@@ -1,8 +1,8 @@
 <div class="comment-list-container" *ngIf="nestedDataSource.data">  
-  <button mat-button (click)="addNewComment()">
+  <button mat-raised-button color="primary" (click)="addNewComment()">
   Add Comment
 </button>
-  <mat-tree class="example-tree mat-elevation-z4" [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl">
+  <mat-tree class="comment-tree example-tree mat-elevation-z4" [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
       <h1>{{node.date}}</h1>
       <p>{{node.commentText}}</p>
@@ -31,7 +31,7 @@
           <mat-icon>remove</mat-icon>
         </button></div>
       </div>
-      <div class="nested-node" [class.example-tree-invisible]="!nestedTreeControl.isExpanded(node)" role="group">
+      <div class="nested-node" [class.example-tree-invisible]="nestedTreeControl.isExpanded(node)" role="group">
         <ng-container matTreeNodeOutlet></ng-container>
       </div>
     </mat-nested-tree-node>

@@ -51,6 +51,11 @@ export class AlbumAPIService {
     return this.http.delete<boolean>(`${this.COMMENT_API}/${id}/${commentid}`)
   }
 
+  UpdateAlbum(id: string, fav: number) {
+    console.log(id, fav);
+    return this.http.put<boolean>(`${this.ALBUM_API}/fav/${id}`, {c: fav});
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       //Client side error

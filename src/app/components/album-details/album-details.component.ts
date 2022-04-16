@@ -34,10 +34,10 @@ export class AlbumDetailsComponent implements OnInit {
       .subscribe(val => {
         this.album = val as Album;
         console.log(id, this.album, val);
-        this.afAuth.authState.subscribe(user => {
-          if (user) {
-            this.user = user
-            if (this.user.favourites?.includes(this.album.id)) this.favourite = true;
+        this.authService.loggedin.subscribe(v => {
+          if(v) { 
+            this.user = this.authService.userData;
+            this.favourite = this.user.favourites.includes(id);
           }
         });
       });

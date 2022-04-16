@@ -20,6 +20,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
+import { SongtimePipe } from './pipes/songtime.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeComponent } from './components/home/home.component';
     SearchComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    SongtimePipe
   ],
   imports: [
     BrowserModule,

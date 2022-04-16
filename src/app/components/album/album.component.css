@@ -1,7 +1,16 @@
 .album-card {
     margin: auto;
-    margin-bottom: 8px;
+    margin-bottom: 1em;
+    margin-top: 1em;
     background-color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.album-title:hover {
+  cursor: pointer;
 }
   
 @media only screen and (max-width: 600px) {

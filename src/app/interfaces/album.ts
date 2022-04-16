@@ -6,5 +6,6 @@ export interface Album {
     description: string,
     artists: [string],
     songs: [Song],
-    genres: [string]
+    genres: [string],
+    favouritesNo: number
 }
