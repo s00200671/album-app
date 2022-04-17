@@ -2,19 +2,22 @@
     <h1>{{album.title}}</h1>
     <h2>{{album.artists}}</h2>
     <h3>Number of favourites: {{album.favouritesNo || 0}}</h3>
-    <h3>Ratings:</h3>
-    <app-rating *ngIf="user && album" [albumid]="album.id" [uid]="user.uid" ></app-rating>
-    <p>{{album.description}}</p>
+    <button mat-raised-button color="primary" *ngIf="user" (click)="Favourite()">
+        {{ !favourite ? "Add to favourites" : "Remove from Favourites" }}
+    </button>
+    <div>
+        <app-rating *ngIf="user && album" [albumid]="album.id" [uid]="user.uid"></app-rating>
+    </div>
+    <div style="display: block">
+        <p>{{album.description}}</p>
+    </div>
 
-<button mat-raised-button color="primary" *ngIf="user" (click)="Favourite()">
-    {{ !favourite ? "Add to favourites" : "Remove from Favourites" }}
-</button>
     <div class="songs-list">
         <ol class="songs-list">
             <li *ngFor="let song of album.songs">{{song.title}} - {{song.length | songtime}}</li>
         </ol>
     </div>
 
-<h2>Comments</h2>
-<app-comment-list class="comment-list" [albumID]="album.id"></app-comment-list>
+    <h2>Comments</h2>
+    <app-comment-list class="comment-list" [albumID]="album.id"></app-comment-list>
 </div>

@@ -10,7 +10,7 @@ import { AlbumAPIService } from 'src/app/services/album-api.service';
 })
 export class RatingComponent implements OnInit {
 
-  
+
   @Input() uid;
   @Input() albumid;
 
@@ -21,14 +21,20 @@ export class RatingComponent implements OnInit {
 
   ngOnInit() {
     this.albumAPIService.GetRatings(this.albumid)
-    .subscribe(v => this.stars = v);
+      .subscribe(r => {
+        console.log(r);
+        this.stars = r["ratings"];
 
-    this.stars ? this.avgRating = this.stars.map(s => s.rating).reduce(( p, c ) => p + c, 0) / this.stars.length : "Not reviewed";
-    
+        this.stars ? this.avgRating = this.stars.map(s => s.rating).reduce((p, c) => p + c, 0) / this.stars.length : "Not reviewed";
+
+        console.log("stars", this.stars, "rating", this.avgRating);
+      });
   }
 
   SetRating(value) {
-    this.albumAPIService.AddRating({uid: this.uid, albumid: this.albumid, rating: value});
+    console.log("hello", value);
+    this.albumAPIService.AddRating({ uid: this.uid, albumid: this.albumid, rating: value })
+      .subscribe(v => console.log(v));
   }
 
 }
