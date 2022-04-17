@@ -21,6 +21,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { SongtimePipe } from './pipes/songtime.pipe';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SongtimePipe } from './pipes/songtime.pipe';
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    SongtimePipe
+    SongtimePipe,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

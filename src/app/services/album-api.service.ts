@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Album } from '../interfaces/album';
+import { Rating } from '../interfaces/rating';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,14 @@ export class AlbumAPIService {
   UpdateAlbum(id: string, fav: number) {
     console.log(id, fav);
     return this.http.put<boolean>(`${this.ALBUM_API}/fav/${id}`, {c: fav});
+  }
+
+  AddRating(rating: Rating): Observable<boolean> {
+    return this.http.post<boolean>(`${this.ALBUM_API}/rating`, rating);
+  }
+
+  GetRatings(id: string): Observable<Rating[]> {
+    return this.http.get<Rating[]>(`${this.ALBUM_API}/rating/${id}`);
   }
 
   private handleError(error: HttpErrorResponse) {
