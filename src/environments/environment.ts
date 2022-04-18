@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_API: "http://localhost:3000",
+  BASE_API: "https://us-central1-song-app-rc.cloudfunctions.net/widgets",
   firebaseConfig : {
     apiKey: "AIzaSyDkjMEe22sK4fjJywAnJtUkupDOAdhrya0",
     authDomain: "song-app-rc.firebaseapp.com",
