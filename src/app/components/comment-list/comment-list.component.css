@@ -33,3 +33,22 @@
 .comment-tree {
   margin-top: 1em;
 }
+
+
+.comment-container {
+  margin: 1em;
+  overflow: break-word;
+}
+
+.mat-tree-node {
+  overflow: auto;
+}
+
+.mat-tree-node:hover {
+  background-color: rgba(165, 165, 165, 0.108) !important;
+  }
+
+
+.bottom-padding {
+  padding-bottom: 50px !important;
+}

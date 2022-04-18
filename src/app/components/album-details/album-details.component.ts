@@ -16,6 +16,7 @@ export class AlbumDetailsComponent implements OnInit {
   album: Album;
   user: User;
   favourite: boolean = false;
+  favNo: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +38,8 @@ export class AlbumDetailsComponent implements OnInit {
         this.authService.loggedin.subscribe(v => {
           if(v) { 
             this.user = this.authService.userData;
-            this.favourite = this.user.favourites.includes(id);
+            this.favNo = this.album.favouritesNo;
+            this.favourite = this.user.favourites?.includes(id);
           }
         });
       });
@@ -48,10 +50,12 @@ export class AlbumDetailsComponent implements OnInit {
     if (!this.favourite) {
       this.authService.AddFavourite(this.album.id);
       this.favourite = true;
+      this.favNo += 1;
     }
     else {
       this.authService.RemoveFavourite(this.album.id);
       this.favourite = false;
+      this.favNo -= 1;
     };
   }
 }

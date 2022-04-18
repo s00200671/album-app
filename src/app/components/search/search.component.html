@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>Search</h1>
 <div id="search-container">
   <mat-form-field color="primary" class="search-field" appearance="fill">
-    <mat-label>Search for a recipe</mat-label>
+    <mat-label>Search for a album</mat-label>
     <input matInput (keydown.enter)="searchAlbums()" name="search" id="searchbox" [(ngModel)]="search" type="text"
       aria-label="Search">
   </mat-form-field>
-  <div *ngIf="showFilter" class="filter">
+  <!-- <div *ngIf="showFilter" class="filter">
     <h2>Time:</h2>
     <table class="timeTable" cellspacing="0">
       <tr>
@@ -23,9 +23,9 @@
         </td>
       </tr>
     </table>
-  </div>
+  </div> -->
   <div mat-dialog-actions>
     <button (click)="searchAlbums()" mat-raised-button class="search-btn" color="primary">Search</button>
-    <button (click)="showFilter = !showFilter" mat-raised-button class="search-btn" color="primary">Filter</button>
+    <!-- <button (click)="showFilter = !showFilter" mat-raised-button class="search-btn" color="primary">Filter</button> -->
     </div>
 </div>

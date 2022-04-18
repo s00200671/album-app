@@ -36,7 +36,8 @@ export class SearchComponent implements OnInit {
 
     // Make sure the title has characters in it
     if (this.filter["title"] !== undefined) {
-      this.router.navigate(['albums/', { queryParams: this.filter }], { skipLocationChange: true});
+      console.log(this.filter);
+      this.router.navigate(['/albums'], { queryParams: this.filter });
       this.dialogRef.close();
     }
   }
@@ -48,14 +49,6 @@ export class SearchComponent implements OnInit {
     // get the title
     this.filter["title"] = this.search;
     if( this.filter["title"] === undefined) this.filter["title"] = "";
-    // get the min and max
-    // NOTE: MIN IS NOT IMPLEMENTED!!
-    // You can enter a number, but it won't search for recipes above the minimum amount... yet
-    if (Number.isInteger(+this.timeMin) && Number.isInteger(+this.timeMin)) {
-      if (0 <= this.timeMin && this.timeMin < this.timeMax) {
-        this.filter["time"] = this.timeMax;
-      }
-    }
 
     return this.filter;
   }

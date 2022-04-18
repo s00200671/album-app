@@ -6,8 +6,13 @@
 
 .comment-list {
     margin-top: 1em;
+    margin-bottom: 2em;
 }
 
 .songs-list {
     margin-bottom: 2em;
+}
+
+.fav-btn {
+    margin-bottom: 1em;
 }

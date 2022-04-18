@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { SongtimePipe } from './pipes/songtime.pipe';
 import { RatingComponent } from './components/rating/rating.component';
+import { FavouritesListComponent } from './components/favourites-list/favourites-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RatingComponent } from './components/rating/rating.component';
     SignUpComponent,
     HomeComponent,
     SongtimePipe,
-    RatingComponent
+    RatingComponent,
+    FavouritesListComponent
   ],
   imports: [
     BrowserModule,

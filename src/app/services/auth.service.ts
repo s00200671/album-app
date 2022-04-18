@@ -17,7 +17,7 @@ import { AlbumAPIService } from './album-api.service';
 })
 export class AuthService {
 
-  userData: any; // Save logged in user data
+  userData: User; // Save logged in user data
   loggedin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -63,7 +63,6 @@ export class AuthService {
         });
         console.log("Signin", result.user);
         this.SetUserData(result.user);
-        this.loggedin.next(true);
       })
       .catch((error) => {
         return error.message;

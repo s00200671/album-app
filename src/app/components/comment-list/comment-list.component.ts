@@ -68,7 +68,7 @@ export class CommentListComponent implements OnInit {
         let obj2 = unstructuredComments[childid];
         if (obj2.parentComment == id) {
           console.log("hi", obj, obj2);
-        obj.childComments ? obj.childComments.push(obj2) : obj.childComments = [obj2]};
+        obj.childComments ? obj.childComments.push({id: childid, ...obj2}) : obj.childComments = [{id: childid, ...obj2}]};
       }
     }
 
@@ -89,6 +89,7 @@ export class CommentListComponent implements OnInit {
   }
 
   addNewComment(comment: Comment) {
+    console.log(comment);
     const dialogRef = this.dialog.open(CommentComponent, {
       width: "auto",
       data: {
@@ -102,7 +103,7 @@ export class CommentListComponent implements OnInit {
     if(this.uid == comment.postedBy)
     this.albumAPIService.RemoveComment(this.albumID, comment?.id)
     .subscribe( val => {
-      val ? this.router.navigate([this.router.url, { skipLocationChange: true }]) : console.log("error");
+      val && this.ngOnInit();
     });
   }
 }

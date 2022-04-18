@@ -44,17 +44,17 @@ export class AlbumListComponent implements OnInit {
 
     // sub to the query params, and map them to the url search params
     this.route.queryParamMap.subscribe({
-      next: params => {
+      next: data => {
       // Get search entry string
 
       // test logging
-      console.log(params);
+      console.log(data);
 
+      // params
+      let params = (data["params"]);
       // map query to url search params
-      Object.entries(params).forEach((v) => { this.queryParams.set(v[0], v[1]) });
+      Object.entries(params).forEach(p => this.queryParams.set(p[0], p[1] as string));
 
-
-      console.log(this.queryParams);
       // Init pages if not already
       // if (params["pageNo"] && Number.isInteger(+params["pageNo"])) {
       //   this.queryParams.set("pageNo", params["pageNo"]);
@@ -99,7 +99,7 @@ export class AlbumListComponent implements OnInit {
           // NOTE: this does not refresh the page, I just want the url to match the params
           // If a user refreshes, it brings the user back to this same page. This prevents
           // them typing out or chaning paging to get back to the page
-          this.location.replaceState("/albums/" + searchQuery);
+          // this.location.replaceState("/albums/" + searchQuery);
         },
         complete: () => console.log('album service finished'),
         error: (mess) => this.message = mess

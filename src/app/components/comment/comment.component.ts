@@ -35,8 +35,12 @@ export class CommentComponent implements OnInit {
       try {
         this.albumAPIService.AddComment(this.data.album, comment)
           .subscribe(val => {
+            let route = this.router.url;
             val ? this.dialogRef.close() : this.message = "Error posting comment";
-            this.router.navigate([this.router.url, { skipLocationChange: true }]);
+            this.router.navigateByUrl('/', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigate([`/albums/${this.data.album}`]);
+              });
           })
       } catch {
         this.message = "Error posting comment";
