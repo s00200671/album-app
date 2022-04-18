@@ -61,8 +61,8 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['']);
         });
+        console.log(result);
         console.log("Signin", result.user);
-        this.SetUserData(result.user);
       })
       .catch((error) => {
         return error.message;
@@ -79,6 +79,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.ngZone.run(() => {
           this.router.navigate(['']);
+          this.SetUserData(result.user);
         });
       })
       .catch((error) => {
@@ -154,7 +155,6 @@ export class AuthService {
       .then(val => {
         this.userData.favourites = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
         this.albumAPIService.UpdateAlbum(id, 1).subscribe(v => console.log(v));
       });
   }
@@ -173,7 +173,6 @@ export class AuthService {
       .then(val => {
         this.userData.favourites = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
         this.albumAPIService.UpdateAlbum(id, -1).subscribe(v => console.log(v));
       });
   }

@@ -36,7 +36,7 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetComments(this.albumID);
-    this.afAuth.authState.subscribe(user => { console.log(user); this.uid = user.uid; console.log(this.uid) });
+    this.afAuth.authState.subscribe(user => { console.log(user); this.uid = user?.uid; console.log(this.uid) });
   }
 
   GetComments(id: string) {

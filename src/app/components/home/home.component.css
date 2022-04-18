@@ -1,0 +1,19 @@
+#home {
+    position: absolute;
+    background-image: url("../../../assets/img/home-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#search-container {
+    text-align: center;
+    background-color:rgb(69, 69, 69);
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+    border-radius: 5px;
+    position: relative;
+    top: 20%;
+}
