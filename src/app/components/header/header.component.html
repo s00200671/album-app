@@ -5,6 +5,7 @@
     <mat-icon>search</mat-icon>
   </button>
   <span class="spacer"></span>
+  <button *ngIf="isadmin" [routerLink]="'dashboard'" mat-button class="user-btn">Dashboard</button>
   <button *ngIf="loggedIn" [routerLink]="'favourites'" mat-button class="user-btn">Favourites</button>
   <button *ngIf="!loggedIn" [routerLink]="'sign-in'" mat-button class="user-btn">Log in</button>
   <button *ngIf="!loggedIn" [routerLink]="'register-user'" mat-button class="user-btn">Register</button>

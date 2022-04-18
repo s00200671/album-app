@@ -2,7 +2,9 @@
 // import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../interfaces/user';
-import * as auth from 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFirestore,
@@ -53,6 +55,16 @@ export class AuthService {
     });
   }
 
+    // check if this user has a claim in their token
+    IsAdmin() {
+      return firebase.auth().currentUser.getIdTokenResult(true)
+      .then((idTokenResult) => {
+        const claim = idTokenResult;    
+        if(claim.claims['admin']) return true; else return false;
+
+      });
+    }
+
   // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth
@@ -60,6 +72,12 @@ export class AuthService {
       .then((result) => {
         this.ngZone.run(() => {
           this.router.navigate(['']);
+        });
+        firebase.auth().currentUser.getIdTokenResult(true)
+        .then((idTokenResult) => {
+          const claim = idTokenResult;     
+          console.log(this.userData.email);
+          console.log(claim.claims['admin']);
         });
         console.log(result);
         console.log("Signin", result.user);

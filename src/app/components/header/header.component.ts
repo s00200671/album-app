@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
 
   loggedIn: boolean = false;
+  isadmin: boolean = false;
 
   constructor(
     private router: Router,
@@ -24,7 +25,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     // Get if the user is logged in by checking if the user obj has keys
-    this.afAuth.authState.subscribe(user => user ? (this.loggedIn = true) : (this.loggedIn = false));
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.loggedIn = true;
+        this.authService.IsAdmin().then(r => this.isadmin = r);
+      }
+      else (this.loggedIn = false)
+    });
   };
 
   ShowSearch() {
@@ -32,7 +39,7 @@ export class HeaderComponent implements OnInit {
       width: "80%"
     });
   }
-  
+
   LogOut(): void {
     // When the log out button is pressed, log out is called from user service, then navigate to home
     this.authService.SignOut();

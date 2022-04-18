@@ -23,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SongtimePipe } from './pipes/songtime.pipe';
 import { RatingComponent } from './components/rating/rating.component';
 import { FavouritesListComponent } from './components/favourites-list/favourites-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FavouritesListComponent } from './components/favourites-list/favourites
     HomeComponent,
     SongtimePipe,
     RatingComponent,
-    FavouritesListComponent
+    FavouritesListComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
