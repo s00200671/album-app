@@ -60,27 +60,30 @@ export class CommentListComponent implements OnInit {
     console.log(unstructuredComments, this.comments);
     let structuredComments = [];
 
+    // Structure comments into tree
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
       let obj = unstructuredComments[id];
+      obj["id"] = id;
+
       for (let childid in unstructuredComments) {
         if (!unstructuredComments.hasOwnProperty(childid)) continue;
         let obj2 = unstructuredComments[childid];
+        obj2["id"] = childid;
         if (obj2.parentComment == id) {
-          console.log("hi", obj, obj2);
-        obj.childComments ? obj.childComments.push({id: childid, ...obj2}) : obj.childComments = [{id: childid, ...obj2}]};
+          obj.childComments ? obj.childComments.push(obj2) : obj.childComments = [obj2]};
       }
     }
 
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
       let obj = unstructuredComments[id];
-      obj.parentComment ? delete unstructuredComments[id] : structuredComments.push({id: id, ...obj});
+      !obj.parentComment && structuredComments.push({id: id, ...obj});
 
     } 
 
     this.nestedDataSource.data = structuredComments;
-    console.log(unstructuredComments, structuredComments);
+    structuredComments.forEach(c => console.log(c));
     console.log(structuredComments,this.nestedDataSource.data);
   }
 
