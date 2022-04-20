@@ -95,11 +95,6 @@ export class AlbumListComponent implements OnInit {
 
           console.log(resp);
           console.log(searchQuery);
-          // replace the state of the url with the new search query.
-          // NOTE: this does not refresh the page, I just want the url to match the params
-          // If a user refreshes, it brings the user back to this same page. This prevents
-          // them typing out or chaning paging to get back to the page
-          // this.location.replaceState("/albums/" + searchQuery);
         },
         complete: () => console.log('album service finished'),
         error: (mess) => this.message = mess

@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   };
 
   ShowSearch() {
+    // open search component
     const dialogRef = this.dialog.open(SearchComponent, {
       width: "80%"
     });

@@ -22,6 +22,7 @@ export class FavouritesListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    // get the favourites and get the albums by id using the album api service
     this.authService.loggedin.subscribe(res => {
       if (res) {
         console.log(this.authService.userData);

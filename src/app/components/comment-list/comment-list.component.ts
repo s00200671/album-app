@@ -56,16 +56,19 @@ export class CommentListComponent implements OnInit {
   }
 
   structureComments() {
+    // Structure the object into an array of structured objects
     let unstructuredComments = this.comments;
     console.log(unstructuredComments, this.comments);
     let structuredComments = [];
 
-    // Structure comments into tree
+    // get the id for each comment
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
       let obj = unstructuredComments[id];
       obj["id"] = id;
 
+      // loop through comments, see if the parentComment id matches the outer loop comment
+      // if true, set the inner loop comment to be a child comment of outer loop comment
       for (let childid in unstructuredComments) {
         if (!unstructuredComments.hasOwnProperty(childid)) continue;
         let obj2 = unstructuredComments[childid];
@@ -75,6 +78,9 @@ export class CommentListComponent implements OnInit {
       }
     }
 
+    // if the comments in the unstructured comments has no parentComment id, then it
+    // is clearly a base comment. This means we only add the base comments to the array
+    // as we dont want to display multiple of the same commnets on the wrong node level
     for (let id in unstructuredComments) {
       if (!unstructuredComments.hasOwnProperty(id)) continue;
       let obj = unstructuredComments[id];
@@ -82,6 +88,8 @@ export class CommentListComponent implements OnInit {
 
     } 
 
+    // sed the tree data source to the structured comments
+    // material will then populate the tree with this new data
     this.nestedDataSource.data = structuredComments;
     structuredComments.forEach(c => console.log(c));
     console.log(structuredComments,this.nestedDataSource.data);
@@ -92,6 +100,7 @@ export class CommentListComponent implements OnInit {
   }
 
   addNewComment(comment: Comment) {
+    // open comment dialog to save comment
     console.log(comment);
     const dialogRef = this.dialog.open(CommentComponent, {
       width: "auto",

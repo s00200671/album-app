@@ -20,6 +20,7 @@ export class RatingComponent implements OnInit {
   constructor(private albumAPIService: AlbumAPIService) { }
 
   ngOnInit() {
+    // get the ratings and generate the average
     this.albumAPIService.GetRatings(this.albumid)
       .subscribe(r => {
         console.log(r);
@@ -32,6 +33,7 @@ export class RatingComponent implements OnInit {
   }
 
   SetRating(value) {
+    // set a rating
     console.log("hello", value);
     this.albumAPIService.AddRating({ uid: this.uid, albumid: this.albumid, rating: value })
       .subscribe(v => console.log(v));

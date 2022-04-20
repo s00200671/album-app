@@ -24,6 +24,8 @@ export class CommentComponent implements OnInit {
   }
 
   saveComment(text: string) {
+    // Component for comment save dialog box
+    // save the comment depending on if there is text inside, and if the user is logged in
     if (this.authService.isLoggedIn && text) {
       console.log(this.data)
       let comment = {

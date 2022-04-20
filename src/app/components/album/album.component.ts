@@ -19,6 +19,7 @@ export class AlbumComponent implements OnInit {
   }
 
   clicked() {
+    // Navigate to album details route (by album id)
     this.router.navigate([`/albums/${this.album.id}`]);
   }
 }

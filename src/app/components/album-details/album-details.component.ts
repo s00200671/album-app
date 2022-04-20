@@ -30,6 +30,8 @@ export class AlbumDetailsComponent implements OnInit {
   }
 
   getAlbum() {
+    // get the id from the params 
+    // then call API with service
     const id = this.route.snapshot.paramMap.get('id');
     this.albumAPIService.GetAlbumByID(id)
       .subscribe(val => {
@@ -46,6 +48,7 @@ export class AlbumDetailsComponent implements OnInit {
   }
 
   Favourite() {
+    // Change favourite field in firestore doc and update on html
     console.log("hi");
     if (!this.favourite) {
       this.authService.AddFavourite(this.album.id);
